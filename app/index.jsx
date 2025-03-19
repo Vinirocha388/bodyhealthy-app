@@ -1,94 +1,72 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 const Home = () => {
+  const [darkMode, setDarkMode] = useState(true);
+
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
+  const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: darkMode ? "#000" : "#fff" },
+    header: { flexDirection: "row", justifyContent: "space-between", padding: 20, backgroundColor: darkMode ? "#111" : "#ddd" },
+    title: { color: darkMode ? "white" : "black", fontSize: 20, fontWeight: "bold" },
+    iconRow: { flexDirection: "row", alignItems: "center" },
+    image: { width: "100%", height: 200 },
+    section: { padding: 20 },
+    sectionTitle: { color: darkMode ? "white" : "black", fontSize: 22, fontWeight: "bold" },
+    text: { color: darkMode ? "white" : "black", marginTop: 5 },
+    button: { backgroundColor: darkMode ? "#fff" : "#000", padding: 10, marginTop: 15, borderRadius: 10, alignItems: "center" },
+    buttonText: { fontWeight: "bold", color: darkMode ? "black" : "white" },
+    community: { backgroundColor: darkMode ? "#222" : "#ddd", margin: 20, padding: 15, borderRadius: 10 },
+    communityText: { color: darkMode ? "white" : "black" },
+    footer: { color: darkMode ? "white" : "black", textAlign: "center", padding: 20 }
+  });
+
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#000" }}>
-      {/* Cabeçalho */}
-      <View style={{ flexDirection: "row", justifyContent: "space-between", padding: 20, backgroundColor: "#111" }}>
-        <FontAwesome name="bars" size={24} color="white" />
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>Body & Health</Text>
-        <FontAwesome name="user-circle" size={24} color="white" />
-      </View>
-      
-      {/* Imagem */}
-      <Image source={{ uri: "https://cdn.prod.website-files.com/64dd05b33f019f79a7ec8f43/66aaa0e993b2326603bcde44_academia-24-horas.webp" }} style={{ width: "100%", height: 200 }} />
-      
-      {/* Mensagem de boas-vindas */}
-      <View style={{ padding: 20 }}>
-        <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>Bem vindo</Text>
-        <Text style={{ color: "white", marginTop: 5 }}>
-          Nossos sistemas oferecem treinos e dicas especializadas para que você tenha um excelente uso e uma ótima saúde.
-        </Text>
-        <TouchableOpacity style={{ backgroundColor: "#fff", padding: 10, marginTop: 15, borderRadius: 10, alignItems: "center" }}>
-          <Text style={{ fontWeight: "bold" }}>Fazer Login</Text>
-        </TouchableOpacity>
-      </View>
-      
-      {/* Postagens da Comunidade */}
-      <View style={{ backgroundColor: "#fff", margin: 20, padding: 15, borderRadius: 10 }}>
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>Posts da Comunidade</Text>
-        
-        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 10 }}>
-          <FontAwesome name="user-circle" size={24} color="#333" style={{ marginRight: 10 }} />
-          <Text>Fulano: "Hoje foi pesado, mas ver todo mundo dando o seu melhor me motivou ainda mais!"</Text>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <FontAwesome name="bars" size={24} color={darkMode ? "white" : "black"} />
+        <Text style={styles.title}>Body & Health</Text>
+        <View style={styles.iconRow}>
+          <FontAwesome name="user-circle" size={24} color={darkMode ? "white" : "black"} style={{ marginRight: 10 }} />
+          <TouchableOpacity onPress={toggleDarkMode}>
+            <FontAwesome name={darkMode ? "sun" : "moon"} size={24} color={darkMode ? "white" : "black"} />
+          </TouchableOpacity>
         </View>
-        
-        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 10 }}>
-          <FontAwesome name="user-circle" size={24} color="#333" style={{ marginRight: 10 }} />
-          <Text>Ciclano: "Quem mais ama essa sensação pós-treino? É viciante!"</Text>
-          <FontAwesome name="heart" size={20} color="red" style={{ marginLeft: 10 }} />
-        </View>
-        
-        <TouchableOpacity style={{ backgroundColor: "#000", padding: 10, marginTop: 15, borderRadius: 10, alignItems: "center" }}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Ir para o Fórum</Text>
-        </TouchableOpacity>
       </View>
       
-      {/* Nossos Serviços */}
-      <View style={{ padding: 20 }}>
-        <Text style={{ color: "white", fontSize: 22, fontWeight: "bold", textAlign: "center" }}>Nossos Serviços</Text>
-        
-        <View style={{ backgroundColor: "#222", padding: 15, borderRadius: 10, marginTop: 15 }}>
-          <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>Musculação</Text>
-          <Text style={{ color: "white", marginTop: 5 }}>
-            Treinos personalizados com equipamentos modernos e acompanhamento profissional para ganho de força, definição e resistência.
-          </Text>
-        </View>
-        
-        <View style={{ backgroundColor: "#222", padding: 15, borderRadius: 10, marginTop: 15 }}>
-          <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>Natação</Text>
-          <Text style={{ color: "white", marginTop: 5 }}>
-            Treinos de baixo impacto na piscina, perfeitos para condicionamento físico e fortalecimento sem sobrecarregar as articulações.
-          </Text>
-        </View>
-        
-        <TouchableOpacity style={{ backgroundColor: "#fff", padding: 10, marginTop: 15, borderRadius: 10, alignItems: "center" }}>
-          <Text style={{ fontWeight: "bold" }}>Ver Mais</Text>
-        </TouchableOpacity>
+      <Image source={{ uri: "https://cdn.prod.website-files.com/64dd05b33f019f79a7ec8f43/66aaa0e993b2326603bcde44_academia-24-horas.webp" }} style={styles.image} />
+      
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Bem vindo</Text>
+        <Text style={styles.text}>Nossos sistemas oferecem treinos e dicas especializadas para sua saúde.</Text>
+        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Fazer Login</Text></TouchableOpacity>
       </View>
       
-      {/* Perguntas Frequentes */}
-      <View style={{ backgroundColor: "#222", padding: 20, margin: 20, borderRadius: 10 }}>
-        <Text style={{ color: "white", fontSize: 22, fontWeight: "bold", textAlign: "center" }}>Perguntas Frequentes</Text>
-        
-        <TouchableOpacity style={{ backgroundColor: "#fff", padding: 10, borderRadius: 10, marginTop: 10 }}>
-          <Text style={{ fontWeight: "bold" }}>➤ Qual o horário de funcionamento?</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={{ backgroundColor: "#fff", padding: 10, borderRadius: 10, marginTop: 10 }}>
-          <Text style={{ fontWeight: "bold" }}>➤ Quais as formas de pagamento aceitas?</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={{ backgroundColor: "#fff", padding: 10, borderRadius: 10, marginTop: 10 }}>
-          <Text style={{ fontWeight: "bold" }}>➤ Consigo fazer uma aula Experimental?</Text>
-        </TouchableOpacity>
+      <View style={styles.community}>
+        <Text style={styles.sectionTitle}>Posts da Comunidade</Text>
+        <Text style={styles.communityText}>Fulano: "Hoje foi pesado, mas me motivou ainda mais!"</Text>
+        <Text style={styles.communityText}>Ciclano: "Quem mais ama essa sensação pós-treino?" ❤️</Text>
+        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Ir para o Fórum</Text></TouchableOpacity>
       </View>
       
-      {/* Footer */}
-      <Text style={{ color: "white", textAlign: "center", padding: 20 }}>© 2025 Body & Health. Todos os direitos reservados</Text>
-    </ScrollView> 
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Nossos Serviços</Text>
+        <Text style={styles.text}>Musculação: Treinos personalizados e acompanhamento profissional.</Text>
+        <Text style={styles.text}>Natação: Baixo impacto e fortalecimento das articulações.</Text>
+        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Ver Mais</Text></TouchableOpacity>
+      </View>
+      
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Perguntas Frequentes</Text>
+        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Horário de funcionamento?</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Formas de pagamento?</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Aula experimental?</Text></TouchableOpacity>
+      </View>
+      
+      <Text style={styles.footer}>© 2025 Body & Health. Todos os direitos reservados</Text>
+    </ScrollView>
   );
 };
 
