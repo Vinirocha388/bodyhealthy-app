@@ -43,21 +43,21 @@ const Home = () => {
         <Text style={styles.text}>Nossos sistemas oferecem treinos e dicas especializadas para sua saúde.</Text>
         <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Fazer Login</Text></TouchableOpacity>
       </View>
-      
+      {/* Posts da Comunidade */}
       <View style={styles.community}>
         <Text style={styles.sectionTitle}>Posts da Comunidade</Text>
         <Text style={styles.communityText}>Fulano: "Hoje foi pesado, mas me motivou ainda mais!"</Text>
         <Text style={styles.communityText}>Ciclano: "Quem mais ama essa sensação pós-treino?" ❤️</Text>
         <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Ir para o Fórum</Text></TouchableOpacity>
       </View>
-      
+      {/* Serviços */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Nossos Serviços</Text>
         <Text style={styles.text}>Musculação: Treinos personalizados e acompanhamento profissional.</Text>
         <Text style={styles.text}>Natação: Baixo impacto e fortalecimento das articulações.</Text>
         <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Ver Mais</Text></TouchableOpacity>
       </View>
-      
+      {/* Perguntas Frequentes */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Perguntas Frequentes</Text>
         <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Horário de funcionamento?</Text></TouchableOpacity>
@@ -65,6 +65,7 @@ const Home = () => {
         <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Aula experimental?</Text></TouchableOpacity>
       </View>
       
+      {/* Footer */}
       <Text style={styles.footer}>© 2025 Body & Health. Todos os direitos reservados</Text>
     </ScrollView>
   );
