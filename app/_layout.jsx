@@ -5,12 +5,13 @@ export default function Layout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#007AFF",
+        headerShown: false,
+        tabBarActiveTintColor: "#fff",
         tabBarInactiveTintColor: "#8E8E93",
         tabBarStyle: {
-          backgroundColor: "#FFFFFF",
+          backgroundColor: "#000",
           borderTopWidth: 1,
-          borderTopColor: "#E0E0E0",
+          borderTopColor: "#000",
           height: 60,
         },
         tabBarLabelStyle: {
@@ -29,11 +30,11 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="posts"
         options={{
-          title: "Perfil",
+          title: "Posts",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
+            <Ionicons name="chatbox-outline" color={color} size={size} />
           ),
         }}
       />
