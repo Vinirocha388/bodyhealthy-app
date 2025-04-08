@@ -3,7 +3,17 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function Layout() {
   return (
-    <Drawer>
+    <Drawer 
+      screenOptions={{
+        headerShown: false,
+        drawerStyle: {
+          backgroundColor: '#000',
+          width: '80%',
+        },
+        drawerActiveBackgroundColor: '#000',
+        drawerActiveTintColor: '#fff',
+        drawerInactiveTintColor: '#fff',
+      }}>
       <Drawer.Screen
         name="index"
         options={{
@@ -25,6 +35,18 @@ export default function Layout() {
           headerLeft: true,
           drawerIcon: ({ size, color }) => (
             <Ionicons name="chatbubble-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="login"
+        options={{
+          drawerLabel: 'Login',
+          title: 'Login',
+          headerShown: false,
+          headerLeft: true,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="person" size={size} color={color} />
           ),
         }}
       />
