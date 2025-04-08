@@ -1,43 +1,33 @@
-import { Tabs } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { Drawer } from 'expo-router/drawer';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Layout() {
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: "#fff",
-        tabBarInactiveTintColor: "#8E8E93",
-        tabBarStyle: {
-          backgroundColor: "#000",
-          borderTopWidth: 1,
-          borderTopColor: "#000",
-          height: 60,
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          marginBottom: 5,
-        },
-      }}
-    >
-      <Tabs.Screen
+    <Drawer>
+      <Drawer.Screen
         name="index"
         options={{
-          title: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+          drawerLabel: 'Início',
+          title: 'Home',
+          headerShown: false,
+          headerLeft: true,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="home" size={size} color={color} />
           ),
         }}
       />
-      <Tabs.Screen
+      <Drawer.Screen
         name="posts"
         options={{
-          title: "Posts",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="chatbox-outline" color={color} size={size} />
+          drawerLabel: 'Posts',
+          title: 'Posts',
+          headerShown: false,
+          headerLeft: true,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="chatbubble-outline" size={size} color={color} />
           ),
         }}
       />
-    </Tabs>
+    </Drawer>
   );
 }
