@@ -11,9 +11,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Drawer } from "expo-router/drawer";
 import CustomHeader from "../components/CustomHeader";
+import { useRouter } from "expo-router"; // Usando useRouter ao invés de useNavigation
 
 export default function HomeScreen() {
   const navigation = useNavigation();
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -36,7 +38,10 @@ export default function HomeScreen() {
         </ImageBackground>
 
         {/* Botão de Login */}
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => router.push("../login")}
+        >
           <Text style={styles.loginText}>Fazer Login</Text>
         </TouchableOpacity>
 
@@ -108,23 +113,23 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   banner: {
-    width: '100%',
+    width: "100%",
     height: 200,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
   },
   bannerOverlay: {
     ...StyleSheet.absoluteFillObject, // Preenche todo o espaço do banner
-    backgroundColor: 'rgba(0, 0, 0, 0.67)', // Fundo translúcido
+    backgroundColor: "rgba(0, 0, 0, 0.67)", // Fundo translúcido
   },
   bannerTitle: {
     fontSize: 26,
-    color: '#ffff',
-    fontWeight: 'bold',
+    color: "#ffff",
+    fontWeight: "bold",
     zIndex: 1, // Garante que o texto fique acima da camada de opacidade
   },
   bannerSubtitle: {
-    color: '#ffff',
+    color: "#ffff",
     marginTop: 10,
     fontSize: 13,
     zIndex: 1, // Garante que o texto fique acima da camada de opacidade
