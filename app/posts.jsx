@@ -49,4 +49,23 @@ const styles = StyleSheet.create({
     color: '#666',
     marginTop: 5,
   },
+
+  '@media (max-width: 768px)': {
+    container: {
+      padding: 10,
+    },
+    profileHeader: {
+      height: 150,
+    },
+    avatar: {
+      width: 80,
+      height: 80,
+    },
+    name: {
+      fontSize: 16,
+    },
+    email: {
+      fontSize: 12,
+    },
+  },
 });
