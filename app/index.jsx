@@ -11,9 +11,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Drawer } from "expo-router/drawer";
 import CustomHeader from "../components/CustomHeader";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -36,7 +38,7 @@ export default function HomeScreen() {
         </ImageBackground>
 
         {/* Botão de Login */}
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => router.push("../login")}>
           <Text style={styles.loginText}>Fazer Login</Text>
         </TouchableOpacity>
 
@@ -66,8 +68,8 @@ export default function HomeScreen() {
             <Ionicons name="heart" size={20} color="red" />
           </View>
 
-          <TouchableOpacity style={styles.forumButton}>
-            <Text style={styles.forumText}>Ir para o Fórum</Text>
+          <TouchableOpacity style={styles.forumButton} onPress={() => router.push("../posts")}>
+            <Text style={styles.forumText}>Ir para os Posts</Text>
           </TouchableOpacity>
         </View>
 
@@ -90,7 +92,7 @@ export default function HomeScreen() {
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => router.push("https://bodyhealthy-web.vercel.app/servicos")}>
           <Text style={styles.loginText}>Ver Mais</Text>
         </TouchableOpacity>
       </ScrollView>
