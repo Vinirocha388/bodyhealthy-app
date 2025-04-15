@@ -51,6 +51,19 @@ export default function Layout() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="contact"
+        options={{
+          drawerLabel: 'Contato',
+          title: 'Contato',
+          headerShown: false,
+          headerShowoginn: false,
+          headerLeft: true,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="call-outline" size={size} color={color} />
+          ),
+        }}
+      />
     </Drawer>
   );
 }
