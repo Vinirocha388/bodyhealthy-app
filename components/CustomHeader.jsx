@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
 export default function CustomHeader({ title = "Body & Health" }) {
   const navigation = useNavigation();
-
+  const router = useRouter();
   return (
     <View style={styles.header}>
       {/* Botão Menu (Drawer) */}
@@ -14,10 +15,10 @@ export default function CustomHeader({ title = "Body & Health" }) {
       </TouchableOpacity>
 
       {/* Título */}
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title} onPress={() => router.push("../")}>{title}</Text>
 
       {/* Ícone de usuário */}
-      <Ionicons name="person-circle-outline" size={28} color="#fff" />
+      <Ionicons onPress={() => router.push("../login")} name="person-circle-outline" size={40} color="#fff"  />
     </View>
   );
 }

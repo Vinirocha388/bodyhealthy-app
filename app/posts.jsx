@@ -10,15 +10,9 @@ export default function Posts() {
   return (
     <View style={styles.container}>
       <CustomHeader />
-      <View style={styles.profileHeader}>
-        <Image
-          source={{ uri: 'https://via.placeholder.com/100' }}
-          style={styles.avatar}
-        />
-        <Text style={styles.name}>Usuário Exemplo</Text>
-        <Text style={styles.email}>usuario@exemplo.com</Text>
+     
       </View>
-    </View>
+    
   );
 }
 
