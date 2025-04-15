@@ -6,32 +6,38 @@ import {
   StyleSheet,
   TextInput,
   ImageBackground,
-  Button,
+  TouchableOpacity,
 } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import CustomHeader from "../components/CustomHeader"; // Importando o cabeçalho personalizado
 
-const UserCard = () => {
+const UserCard = ({ navigation }) => {
+  const [darkMode, setDarkMode] = useState(true);
   const [userInfo, setUserInfo] = useState({
-    name: "João Silva",
-    age: "30",
-    gender: "Masculino",
-    height: "1.75m",
-    weight: "70kg",
-    goal: "Ganhar massa muscular",
-    aboutGoal: "Quero ganhar massa muscular para melhorar minha saúde e estética.",
-    restrictions: "Nenhuma restrição física ou de saúde.",
-    fitnessLevel: "Intermediário",
-    preferences: "Prefiro treinos ao ar livre e exercícios funcionais.",
+    name: "",
+    age: "",
+    gender: "",
+    height: "",
+    weight: "",
+    goal: "",
+    aboutGoal: "",
+    restrictions: "",
+    fitnessLevel: "",
+    preferences: "",
   });
+
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const handleChange = (key, value) => {
     setUserInfo({ ...userInfo, [key]: value });
   };
 
   return (
-    <View style={styles.card}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Login e Cadastro</Text>
+    <View style={[styles.card, { backgroundColor: darkMode ? "rgba(39, 39, 39, 0.8)" : "rgba(255, 255, 255, 0.8)" }]}>
+      {/* Header de Navegação */}
+      <CustomHeader />
 
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.profileImageContainer}>
           <ImageBackground
             source={{
@@ -42,114 +48,163 @@ const UserCard = () => {
         </View>
 
         <View style={styles.cardContent}>
-          <Field label="Nome:" value={userInfo.name} onChange={(text) => handleChange("name", text)} />
-          <Field label="Idade:" value={userInfo.age} onChange={(text) => handleChange("age", text)} keyboardType="numeric" />
-          <Field label="Sexo:" value={userInfo.gender} onChange={(text) => handleChange("gender", text)} />
-          <Field label="Altura:" value={userInfo.height} onChange={(text) => handleChange("height", text)} />
-          <Field label="Peso:" value={userInfo.weight} onChange={(text) => handleChange("weight", text)} />
-          <Field label="Objetivo:" value={userInfo.goal} onChange={(text) => handleChange("goal", text)} />
-          <Field label="Fale Sobre o Seu Objetivo:" value={userInfo.aboutGoal} onChange={(text) => handleChange("aboutGoal", text)} multiline />
-          <Field label="Restrições Físicas e de Saúde:" value={userInfo.restrictions} onChange={(text) => handleChange("restrictions", text)} multiline />
-          <Field label="Nível de condicionamento Físico:" value={userInfo.fitnessLevel} onChange={(text) => handleChange("fitnessLevel", text)} />
-          <Field label="Preferências pessoais:" value={userInfo.preferences} onChange={(text) => handleChange("preferences", text)} multiline />
+          <Field 
+            label="Nome" 
+            value={userInfo.name} 
+            onChange={(text) => handleChange("name", text)} 
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Idade" 
+            value={userInfo.age} 
+            onChange={(text) => handleChange("age", text)} 
+            keyboardType="numeric" 
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Sexo" 
+            value={userInfo.gender} 
+            onChange={(text) => handleChange("gender", text)} 
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Altura" 
+            value={userInfo.height} 
+            onChange={(text) => handleChange("height", text)} 
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Peso" 
+            value={userInfo.weight} 
+            onChange={(text) => handleChange("weight", text)} 
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Objetivo" 
+            value={userInfo.goal} 
+            onChange={(text) => handleChange("goal", text)} 
+            darkMode={darkMode}
+          />
         </View>
       </ScrollView>
 
-      <Button title="Cadastrar" onPress={() => alert("Informações salvas com sucesso!")} />
+      <TouchableOpacity 
+        style={[styles.button, { backgroundColor: darkMode ? "#fff" : "#fff" }]} 
+        onPress={() => alert("Informações salvas com sucesso!")}
+      >
+        <Text style={styles.buttonText}>Cadastrar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-// Componente de campo reutilizável
-const Field = ({ label, value, onChange, multiline = false, keyboardType = "default" }) => (
-  <>
-    <Text style={styles.cardTitle}>{label}</Text>
+const Field = ({ label, value, onChange, multiline = false, keyboardType = "default", darkMode }) => (
+  <View style={styles.fieldContainer}>
+    <Text style={[styles.cardTitle, { color: darkMode ? "#fff" : "#000" }]}>{label}</Text>
     <TextInput
-      style={styles.cardInput}
+      style={[
+        styles.cardInput, 
+        { 
+          color: darkMode ? "#fff" : "#000",
+          borderColor: darkMode ? "#ccc" : "#666"
+        }
+      ]}
       value={value}
       onChangeText={onChange}
       multiline={multiline}
       keyboardType={keyboardType}
+      placeholder={`Digite seu ${label.toLowerCase()}`}
+      placeholderTextColor={darkMode ? "#999" : "#666"}
     />
-  </>
+  </View>
 );
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
+  const [darkMode, setDarkMode] = useState(true);
+
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={styles.container}>
-        <ImageBackground
-          source={{
-            uri: "https://cdn.prod.website-files.com/64dd05b33f019f79a7ec8f43/66aaa0e993b2326603bcde44_academia-24-horas.webp",
-          }}
-          style={styles.image}
-        />
-        <UserCard />
-      </View>
-    </ScrollView>
+    <View style={[styles.screenContainer, { backgroundColor: darkMode ? "#000" : "#fff" }]}>
+      <ImageBackground
+        source={{
+          uri: "https://cdn.prod.website-files.com/64dd05b33f019f79a7ec8f43/66aaa0e993b2326603bcde44_academia-24-horas.webp",
+        }}
+        style={styles.backgroundImage}
+        blurRadius={5}
+      />
+      <UserCard navigation={navigation} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#272727",
+  screenContainer: {
+    flex: 1,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-    color: "#fff",
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    position: "absolute",
+    width: "100%",
+    height: "100%",
   },
-  card: {
-    backgroundColor: "#272727",
-    borderRadius: 10,
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     padding: 20,
     width: "100%",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  iconRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  container: {
+    flexGrow: 1,
+    padding: 20,
+  },
+  card: {
+    flex: 1,
+    padding: 0,
   },
   cardContent: {
-    marginTop: 20,
+    marginTop: 10,
+  },
+  fieldContainer: {
+    marginBottom: 15,
   },
   cardTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 16,
     marginBottom: 5,
-    color: "#fff",
   },
   cardInput: {
     fontSize: 16,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
+    borderBottomWidth: 1,
     padding: 10,
-    backgroundColor: "#fff",
   },
   profileImageContainer: {
     alignItems: "center",
-    marginBottom: 20,
+    marginTop: 20,
+    marginBottom: 30,
   },
   profileImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     overflow: "hidden",
   },
-  image: {
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-    justifyContent: "center",
+  button: {
+    padding: 15,
+    borderRadius: 5,
     alignItems: "center",
-    opacity: 0.5,
+    margin: 20,
+  },
+  buttonText: {
+    color: "black",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
 
