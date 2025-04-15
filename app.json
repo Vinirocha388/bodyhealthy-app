@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Nav-App",
-    "slug": "Nav-App",
+    "name": "bodyhealthy-app",
+    "slug": "bodyhealthy-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

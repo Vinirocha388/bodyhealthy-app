@@ -10,7 +10,7 @@ export default function CustomHeader({ title = "Body & Health" }) {
     <View style={styles.header}>
       {/* Botão Menu (Drawer) */}
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
-        <Ionicons name="menu" size={28} color="#fff" />
+        <Ionicons name="menu" size={40} color="#fff" />
       </TouchableOpacity>
 
       {/* Título */}
@@ -25,8 +25,8 @@ export default function CustomHeader({ title = "Body & Health" }) {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#000',
-    padding: 10,
-    paddingTop: 40, // para não colar no topo
+    padding: 20,
+    paddingTop: 10, // para não colar no topo
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });

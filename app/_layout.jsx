@@ -8,9 +8,10 @@ export default function Layout() {
         headerShown: false,
         drawerStyle: {
           backgroundColor: '#000',
+          opacity: 0.7,
           width: '80%',
         },
-        drawerActiveBackgroundColor: '#000',
+        drawerActiveBackgroundColor: '#f4f4f4',
         drawerActiveTintColor: '#fff',
         drawerInactiveTintColor: '#fff',
       }}>
