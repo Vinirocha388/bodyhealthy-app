@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { Drawer } from "expo-router/drawer";
 import CustomHeader from "../components/CustomHeader";
 import { useRouter } from "expo-router";
 
