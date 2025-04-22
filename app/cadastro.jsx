@@ -7,29 +7,76 @@ import {
   TextInput,
   ImageBackground,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import CustomHeader from "../components/CustomHeader"; // Importando o cabeçalho personalizado
+import CustomHeader from "../components/CustomHeader";
+import axios from "axios"; // Importe o axios
 
 const UserCard = ({ navigation }) => {
   const [darkMode, setDarkMode] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
+    userName: "",
     name: "",
+    email: "",
+    password: "",
+    cellPhone: "",
     age: "",
-    gender: "",
+    sex: "",
     height: "",
     weight: "",
-    goal: "",
-    aboutGoal: "",
-    restrictions: "",
-    fitnessLevel: "",
-    preferences: "",
+    descriptionObjective: "",
+    restriction: "",
+    conditioning: "",
   });
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const handleChange = (key, value) => {
     setUserInfo({ ...userInfo, [key]: value });
+  };
+
+  // Função para criar um novo usuário usando axios
+  const createUser = async () => {
+    // Verificar campos obrigatórios
+    if (!userInfo.userName || !userInfo.name || !userInfo.email || !userInfo.password || !userInfo.cellPhone) {
+      Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    // Preparar os dados para envio
+    const userData = {
+      ...userInfo,
+      age: parseInt(userInfo.age) || 0,
+      height: parseFloat(userInfo.height) || 0,
+      weight: parseFloat(userInfo.weight) || 0,
+      cellPhone: parseInt(userInfo.cellPhone) || 0,
+    };
+
+    setLoading(true);
+    try {
+      // Fazer a requisição POST para a API
+      const response = await axios.post(
+        "https://bodyhealthy-back.onrender.com/user",
+        userData
+      );
+      
+      console.log("Usuário criado:", response.data);
+      Alert.alert(
+        "Sucesso",
+        "Informações salvas com sucesso!",
+        [{ text: "OK" }]
+      );
+    } catch (error) {
+      console.error("Erro ao criar usuário:", error.response ? error.response.data : error.message);
+      Alert.alert(
+        "Erro",
+        error.response ? error.response.data.message || "Falha ao criar usuário" : "Não foi possível conectar ao servidor"
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,9 +96,36 @@ const UserCard = ({ navigation }) => {
 
         <View style={styles.cardContent}>
           <Field 
-            label="Nome" 
+            label="Nome de usuário" 
+            value={userInfo.userName} 
+            onChange={(text) => handleChange("userName", text)} 
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Nome completo" 
             value={userInfo.name} 
             onChange={(text) => handleChange("name", text)} 
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Email" 
+            value={userInfo.email} 
+            onChange={(text) => handleChange("email", text)} 
+            keyboardType="email-address"
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Senha" 
+            value={userInfo.password} 
+            onChange={(text) => handleChange("password", text)} 
+            secureTextEntry={true}
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Celular" 
+            value={userInfo.cellPhone} 
+            onChange={(text) => handleChange("cellPhone", text)} 
+            keyboardType="numeric"
             darkMode={darkMode}
           />
           <Field 
@@ -63,42 +137,64 @@ const UserCard = ({ navigation }) => {
           />
           <Field 
             label="Sexo" 
-            value={userInfo.gender} 
-            onChange={(text) => handleChange("gender", text)} 
+            value={userInfo.sex} 
+            onChange={(text) => handleChange("sex", text)} 
             darkMode={darkMode}
           />
           <Field 
-            label="Altura" 
+            label="Altura (m)" 
             value={userInfo.height} 
             onChange={(text) => handleChange("height", text)} 
+            keyboardType="numeric"
             darkMode={darkMode}
           />
           <Field 
-            label="Peso" 
+            label="Peso (kg)" 
             value={userInfo.weight} 
             onChange={(text) => handleChange("weight", text)} 
+            keyboardType="numeric"
             darkMode={darkMode}
           />
           <Field 
             label="Objetivo" 
-            value={userInfo.goal} 
-            onChange={(text) => handleChange("goal", text)} 
+            value={userInfo.descriptionObjective} 
+            onChange={(text) => handleChange("descriptionObjective", text)} 
+            multiline={true}
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Restrições" 
+            value={userInfo.restriction} 
+            onChange={(text) => handleChange("restriction", text)} 
+            multiline={true}
+            darkMode={darkMode}
+          />
+          <Field 
+            label="Condicionamento físico" 
+            value={userInfo.conditioning} 
+            onChange={(text) => handleChange("conditioning", text)} 
             darkMode={darkMode}
           />
         </View>
       </ScrollView>
 
       <TouchableOpacity 
-        style={[styles.button, { backgroundColor: darkMode ? "#fff" : "#fff" }]} 
-        onPress={() => alert("Informações salvas com sucesso!")}
+        style={[
+          styles.button, 
+          { backgroundColor: darkMode ? "#fff" : "#fff", opacity: loading ? 0.7 : 1 }
+        ]} 
+        onPress={createUser}
+        disabled={loading}
       >
-        <Text style={styles.buttonText}>Cadastrar</Text>
+        <Text style={styles.buttonText}>
+          {loading ? "Cadastrando..." : "Cadastrar"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const Field = ({ label, value, onChange, multiline = false, keyboardType = "default", darkMode }) => (
+const Field = ({ label, value, onChange, multiline = false, keyboardType = "default", secureTextEntry = false, darkMode }) => (
   <View style={styles.fieldContainer}>
     <Text style={[styles.cardTitle, { color: darkMode ? "#fff" : "#000" }]}>{label}</Text>
     <TextInput
@@ -106,14 +202,16 @@ const Field = ({ label, value, onChange, multiline = false, keyboardType = "defa
         styles.cardInput, 
         { 
           color: darkMode ? "#fff" : "#000",
-          borderColor: darkMode ? "#ccc" : "#666"
+          borderColor: darkMode ? "#ccc" : "#666",
+          height: multiline ? 80 : undefined
         }
       ]}
       value={value}
       onChangeText={onChange}
       multiline={multiline}
       keyboardType={keyboardType}
-      placeholder={`Digite seu ${label.toLowerCase()}`}
+      secureTextEntry={secureTextEntry}
+      placeholder={`Digite ${label.toLowerCase()}`}
       placeholderTextColor={darkMode ? "#999" : "#666"}
     />
   </View>
@@ -206,9 +304,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-
-
-
 });
 
 export default LoginScreen;
