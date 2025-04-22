@@ -42,7 +42,7 @@ export default function Layout() {
       <Drawer.Screen
         name="cadastro"
         options={{
-          drawerLabel: 'Cdastro',
+          drawerLabel: 'Cadastro',
           title: 'Cadastro',
           headerShown: false,
           headerLeft: true,
