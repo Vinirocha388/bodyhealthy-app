@@ -15,7 +15,7 @@ import { useRouter } from "expo-router";
 export default function HomeScreen() {
   const navigation = useNavigation();
   const router = useRouter();
-  
+
   return (
     <View style={styles.container}>
       <CustomHeader />
@@ -37,7 +37,10 @@ export default function HomeScreen() {
         </ImageBackground>
 
         {/* Botão de Login */}
-        <TouchableOpacity style={styles.loginButton} onPress={() => router.push("../login")}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => router.push("../login")}
+        >
           <Text style={styles.loginText}>Fazer Login</Text>
         </TouchableOpacity>
 
@@ -67,7 +70,10 @@ export default function HomeScreen() {
             <Ionicons name="heart" size={20} color="red" />
           </View>
 
-          <TouchableOpacity style={styles.forumButton} onPress={() => router.push("../posts")}>
+          <TouchableOpacity
+            style={styles.forumButton}
+            onPress={() => router.push("../posts")}
+          >
             <Text style={styles.forumText}>Ir para os Posts</Text>
           </TouchableOpacity>
         </View>
@@ -91,7 +97,12 @@ export default function HomeScreen() {
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={() => router.push("https://bodyhealthy-web.vercel.app/servicos")}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() =>
+            router.push("https://bodyhealthy-web.vercel.app/servicos")
+          }
+        >
           <Text style={styles.loginText}>Ver Mais</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -109,23 +120,23 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   banner: {
-    width: '100%',
+    width: "100%",
     height: 200,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
   },
   bannerOverlay: {
     ...StyleSheet.absoluteFillObject, // Preenche todo o espaço do banner
-    backgroundColor: 'rgba(0, 0, 0, 0.67)', // Fundo translúcido
+    backgroundColor: "rgba(0, 0, 0, 0.67)", // Fundo translúcido
   },
   bannerTitle: {
     fontSize: 26,
-    color: '#ffff',
-    fontWeight: 'bold',
+    color: "#ffff",
+    fontWeight: "bold",
     zIndex: 1, // Garante que o texto fique acima da camada de opacidade
   },
   bannerSubtitle: {
-    color: '#ffff',
+    color: "#ffff",
     marginTop: 10,
     fontSize: 13,
     zIndex: 1, // Garante que o texto fique acima da camada de opacidade
@@ -203,94 +214,94 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-banner: {
-  width: '100%',
-  height: 200,
-  justifyContent: 'center',
-  padding: 20,
-},
-bannerTitle: {
-  fontSize: 26,
-  color: '#ffff',
-  fontWeight: 'bold',
-  zIndex: 1,
-},
-bannerSubtitle: {
-  color: '#ffff',
-  marginTop: 10,
-  fontSize: 13,
-  zIndex: 1,
-},
-loginButton: {
-  backgroundColor: "#fff",
-  paddingHorizontal: 30,
-  paddingVertical: 10,
-  borderRadius: 10,
-  marginTop: 10,
-},
-loginText: {
-  fontWeight: "bold",
-  color: "#000",
-},
-card: {
-  backgroundColor: "#fff",
-  padding: 15,
-  marginTop: 20,
-  borderRadius: 15,
-  width: "90%",
-},
-sectionTitle: {
-  fontWeight: "bold",
-  fontSize: 16,
-  marginBottom: 10,
-  textAlign: "center",
-  color: "#000",
-},
-post: {
-  flexDirection: "row",
-  alignItems: "center",
-  backgroundColor: "#333",
-  padding: 10,
-  borderRadius: 10,
-  marginBottom: 10,
-  gap: 10,
-},
-postName: {
-  color: "#00f2ff",
-  fontWeight: "bold",
-},
-postText: {
-  color: "#fff",
-  maxWidth: 230,
-},
-forumButton: {
-  backgroundColor: "#333",
-  paddingVertical: 10,
-  borderRadius: 20,
-  alignItems: "center",
-  marginTop: 10,
-},
-forumText: {
-  color: "#fff",
-  fontWeight: "bold",
-},
-serviceCard: {
-  backgroundColor: "#222",
-  width: "90%",
-  padding: 20,
-  borderRadius: 15,
-  marginTop: 15,
-},
-serviceTitle: {
-  fontWeight: "bold",
-  fontSize: 16,
-  color: "#fff",
-  marginBottom: 5,
-  textAlign: "center",
-},
-serviceText: {
-  color: "#ddd",
-  fontSize: 13,
-  textAlign: "center",
-},
+  banner: {
+    width: "100%",
+    height: 200,
+    justifyContent: "center",
+    padding: 20,
+  },
+  bannerTitle: {
+    fontSize: 26,
+    color: "#ffff",
+    fontWeight: "bold",
+    zIndex: 1,
+  },
+  bannerSubtitle: {
+    color: "#ffff",
+    marginTop: 10,
+    fontSize: 13,
+    zIndex: 1,
+  },
+  loginButton: {
+    backgroundColor: "#fff",
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  loginText: {
+    fontWeight: "bold",
+    color: "#000",
+  },
+  card: {
+    backgroundColor: "#fff",
+    padding: 15,
+    marginTop: 20,
+    borderRadius: 15,
+    width: "90%",
+  },
+  sectionTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: "center",
+    color: "#000",
+  },
+  post: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#333",
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+    gap: 10,
+  },
+  postName: {
+    color: "#00f2ff",
+    fontWeight: "bold",
+  },
+  postText: {
+    color: "#fff",
+    maxWidth: 230,
+  },
+  forumButton: {
+    backgroundColor: "#333",
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  forumText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  serviceCard: {
+    backgroundColor: "#222",
+    width: "90%",
+    padding: 20,
+    borderRadius: 15,
+    marginTop: 15,
+  },
+  serviceTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#fff",
+    marginBottom: 5,
+    textAlign: "center",
+  },
+  serviceText: {
+    color: "#ddd",
+    fontSize: 13,
+    textAlign: "center",
+  },
 });
