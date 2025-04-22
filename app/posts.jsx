@@ -16,12 +16,13 @@ export default function Posts() {
         <Text style={styles.pageTitleText}>Feed da Comunidade</Text>
       </View>
 
+      {/* ScrollView para conteúdo dos posts */}
       <ScrollView contentContainerStyle={styles.content}>
         {/* Card 1 */}
         <View style={styles.card}>
           <View style={styles.cardHeader}>
             <Image 
-              source={{uri: ''}} 
+              source={{uri: 'https://randomuser.me/api/portraits/men/32.jpg'}} 
               style={styles.avatar}
             />
             <View style={styles.userInfo}>
@@ -56,7 +57,7 @@ export default function Posts() {
         <View style={styles.card}>
           <View style={styles.cardHeader}>
             <Image 
-              source={{uri: ''}} 
+              source={{uri: 'https://randomuser.me/api/portraits/women/44.jpg'}} 
               style={styles.avatar}
             />
             <View style={styles.userInfo}>
@@ -91,7 +92,7 @@ export default function Posts() {
         <View style={styles.card}>
           <View style={styles.cardHeader}>
             <Image 
-              source={{uri: ''}} 
+              source={{uri: 'https://randomuser.me/api/portraits/men/62.jpg'}} 
               style={styles.avatar}
             />
             <View style={styles.userInfo}>
@@ -121,18 +122,15 @@ export default function Posts() {
             </TouchableOpacity>
           </View>
         </View>
-
-        {/* Botão para fazer postagens */}
-        <TouchableOpacity
-          style={styles.postButton}
-          onPress={() => alert('Função para criar post ainda não implementada!')}
-        >
-          <Ionicons name="add-circle-outline" size={24} color="#fff" />
-          <Text style={styles.postButtonText}>Nova Postagem</Text>
-        </TouchableOpacity>
       </ScrollView>
       
-     
+      {/* Botão flutuante fora do ScrollView para estar sempre visível */}
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => alert('Função para criar post ainda não implementada!')}
+      >
+        <Ionicons name="add-outline" size={30} color="#fff" />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -151,14 +149,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
-  pageSubtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginTop: 4,
-  },
   content: {
     padding: 16,
-    paddingBottom: 80,
+    paddingBottom: 80, 
   },
   card: {
     backgroundColor: '#fff',
@@ -219,21 +212,6 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 14,
   },
-  postButton: {
-    backgroundColor: '#000',
-    padding: 16,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  postButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginLeft: 8,
-  },
   fab: {
     position: 'absolute',
     width: 60,
@@ -248,5 +226,6 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.3,
     shadowRadius: 5,
+    zIndex: 999, // Garante que o botão esteja acima de outros elementos
   },
 });
