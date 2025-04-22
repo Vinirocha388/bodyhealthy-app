@@ -40,10 +40,10 @@ export default function Layout() {
         }}
       />
       <Drawer.Screen
-        name="login"
+        name="cadastro"
         options={{
-          drawerLabel: 'Login',
-          title: 'Login',
+          drawerLabel: 'Cdastro',
+          title: 'Cadastro',
           headerShown: false,
           headerLeft: true,
           drawerIcon: ({ size, color }) => (
