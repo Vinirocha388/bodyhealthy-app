@@ -21,18 +21,16 @@ export default function HomeScreen() {
       <CustomHeader />
 
       <ScrollView contentContainerStyle={styles.scroll}>
-        {/* BANNER */}
         <ImageBackground
           source={{
             uri: "https://cdn.prod.website-files.com/64dd05b33f019f79a7ec8f43/66aaa0e993b2326603bcde44_academia-24-horas.webp",
           }}
           style={styles.banner}
         >
-          <View style={styles.bannerOverlay} /> {/* Camada de opacidade */}
+          <View style={styles.bannerOverlay} />
           <Text style={styles.bannerTitle}>Bem vindo</Text>
           <Text style={styles.bannerSubtitle}>
-            Nossos sistemas oferecem treinos e dicas especializadas para que
-            você tenha um excelente uso e uma ótima saúde
+            Nossos sistemas oferecem treinos e dicas especializadas para que você tenha um excelente uso e uma ótima saúde
           </Text>
         </ImageBackground>
 

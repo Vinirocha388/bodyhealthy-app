@@ -58,7 +58,7 @@ const UserCard = ({ navigation }) => {
     try {
       // Fazer a requisição POST para a API
       const response = await axios.post(
-        "https://bodyhealthy-back.onrender.com/user",
+        "http://localhost:4000/user",
         userData
       );
       
@@ -70,6 +70,10 @@ const UserCard = ({ navigation }) => {
       );
     } catch (error) {
       console.error("Erro ao criar usuário:", error.response ? error.response.data : error.message);
+      console.log("AAAAAAAAA",error.response.data.message);
+      console.log(userData);
+      
+      
       Alert.alert(
         "Erro",
         error.response ? error.response.data.message || "Falha ao criar usuário" : "Não foi possível conectar ao servidor"
