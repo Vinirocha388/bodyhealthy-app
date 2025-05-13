@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import CustomHeader from "../components/CustomHeader";
-import axios from "axios"; // Importe o axios
+import axios from "axios";
 
 const UserCard = ({ navigation }) => {
   const [darkMode, setDarkMode] = useState(true);
@@ -37,7 +37,7 @@ const UserCard = ({ navigation }) => {
     setUserInfo({ ...userInfo, [key]: value });
   };
 
-  // Função para criar um novo usuário usando axios
+  // Função para criar um novo usuário usando axios com a nova API
   const createUser = async () => {
     // Verificar campos obrigatórios
     if (!userInfo.userName || !userInfo.name || !userInfo.email || !userInfo.password || !userInfo.cellPhone) {
@@ -56,28 +56,30 @@ const UserCard = ({ navigation }) => {
 
     setLoading(true);
     try {
-      // Fazer a requisição POST para a API
+      // Fazer a requisição POST para a nova API
       const response = await axios.post(
-        "http://localhost:4000/user",
+        "https://bodyhealthy-back.onrender.com/user",
         userData
       );
       
       console.log("Usuário criado:", response.data);
       Alert.alert(
         "Sucesso",
-        "Informações salvas com sucesso!",
+        "Cadastro realizado com sucesso!",
         [{ text: "OK" }]
       );
+      
+      // Opcional: redirecionar para tela de login após cadastro bem-sucedido
+       //navigation.navigate('Login');
+      
     } catch (error) {
       console.error("Erro ao criar usuário:", error.response ? error.response.data : error.message);
-      console.log("AAAAAAAAA",error.response.data.message);
-      console.log(userData);
       
+      const errorMessage = error.response && error.response.data 
+        ? error.response.data.message || "Falha ao criar usuário" 
+        : "Não foi possível conectar ao servidor";
       
-      Alert.alert(
-        "Erro",
-        error.response ? error.response.data.message || "Falha ao criar usuário" : "Não foi possível conectar ao servidor"
-      );
+      Alert.alert("Erro", errorMessage);
     } finally {
       setLoading(false);
     }
@@ -221,7 +223,7 @@ const Field = ({ label, value, onChange, multiline = false, keyboardType = "defa
   </View>
 );
 
-const LoginScreen = ({ navigation }) => {
+const CadastroScreen = ({ navigation }) => {
   const [darkMode, setDarkMode] = useState(true);
 
   return (
@@ -310,4 +312,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default CadastroScreen;
