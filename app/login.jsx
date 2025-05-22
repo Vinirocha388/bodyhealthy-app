@@ -5,50 +5,14 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Alert,
   Image
 } from "react-native";
-import axios from "axios";
 import { useRouter } from "expo-router";
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  const handleLogin = async () => {
-    if (!identifier || !password) {
-      Alert.alert("Erro", "Preencha todos os campos!");
-      return;
-    }
-  
-    setLoading(true);
-    try {
-      const response = await axios.get("https://bodyhealthy-back.onrender.com/user");
-      const users = response.data;
-  
-      // Verifica se existe um usuário com o userName OU email + senha
-      const foundUser = users.find(
-        (user) =>
-          (user.userName === identifier || user.email === identifier) &&
-          user.password === password
-      );
-  
-      if (foundUser) {
-        Alert.alert("Bem-vindo!", `Olá, ${foundUser.name}`);
-        router.push("");
-      } else {
-        Alert.alert("Erro", "Usuário ou senha inválidos.");
-      }
-    } catch (error) {
-      console.error("Erro ao fazer login:", error.message);
-      Alert.alert("Erro", "Não foi possível conectar ao servidor.");
-    } finally {
-      setLoading(false);
-    }
-  };
-  
 
   return (
     <View style={styles.container}>
@@ -76,11 +40,10 @@ export default function LoginScreen({ navigation }) {
         />
 
         <TouchableOpacity
-          style={[styles.button, { opacity: loading ? 0.6 : 1 }]}
-          onPress={handleLogin}
-          disabled={loading}
+          style={styles.button}
+          onPress={() => router.push("/index")}
         >
-          <Text style={styles.buttonText}>{loading ? "Fazendo Login.." : "Login"}</Text>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => router.push("../cadastro")}>

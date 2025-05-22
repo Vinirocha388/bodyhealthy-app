@@ -11,7 +11,6 @@ export default function Posts() {
   return (
     <View style={styles.container}>
       <CustomHeader />
-      
       <View style={styles.pageTitle}>
         <Text style={styles.pageTitleText}>Feed da Comunidade</Text>
       </View>

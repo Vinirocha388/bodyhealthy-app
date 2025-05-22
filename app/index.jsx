@@ -34,13 +34,6 @@ export default function HomeScreen() {
           </Text>
         </ImageBackground>
 
-        {/* Botão de Login */}
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => router.push("../login")}
-        >
-          <Text style={styles.loginText}>Fazer Login</Text>
-        </TouchableOpacity>
 
         {/* POSTS DA COMUNIDADE */}
         <View style={styles.card}>

@@ -9,13 +9,13 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import CustomHeader from "../components/CustomHeader";
 import axios from "axios";
+import { useRouter } from "expo-router";
 
 const UserCard = ({ navigation }) => {
   const [darkMode, setDarkMode] = useState(true);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const [userInfo, setUserInfo] = useState({
     userName: "",
     name: "",
@@ -31,7 +31,6 @@ const UserCard = ({ navigation }) => {
     conditioning: "",
   });
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const handleChange = (key, value) => {
     setUserInfo({ ...userInfo, [key]: value });
@@ -69,6 +68,11 @@ const UserCard = ({ navigation }) => {
         [{ text: "OK" }]
       );
       
+      Alert.alert(
+        "Usuário Cadastrado",
+        `Bem-vindo, ${response.data.name}!`,
+        [{ text: "OK" }]
+      );
       // Opcional: redirecionar para tela de login após cadastro bem-sucedido
        //navigation.navigate('Login');
       
@@ -87,9 +91,7 @@ const UserCard = ({ navigation }) => {
 
   return (
     <View style={[styles.card, { backgroundColor: darkMode ? "rgba(39, 39, 39, 0.8)" : "rgba(255, 255, 255, 0.8)" }]}>
-      {/* Header de Navegação */}
-      <CustomHeader />
-
+      
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.profileImageContainer}>
           <ImageBackground
@@ -195,6 +197,15 @@ const UserCard = ({ navigation }) => {
         <Text style={styles.buttonText}>
           {loading ? "Cadastrando..." : "Cadastrar"}
         </Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        style={[
+          styles.button, 
+          { backgroundColor: darkMode ? "#fff" : "#fff" }
+        ]}
+        onPress={() => router.push("./login")}
+      >
+        <Text style={styles.buttonText}>Ir para Login</Text>
       </TouchableOpacity>
     </View>
   );
