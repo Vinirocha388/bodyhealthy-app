@@ -5,7 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { useRouter } from "expo-router";
 
@@ -13,6 +14,14 @@ export default function LoginScreen() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  const handleLogin = () => {
+    if (!identifier || !password) {
+      Alert.alert("Erro", "Preencha todos os campos!");
+      return;
+    }
+    router.push("/");
+  };
 
   return (
     <View style={styles.container}>
@@ -41,12 +50,16 @@ export default function LoginScreen() {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("/index")}
+          onPress={handleLogin}
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => router.push("../cadastro")}>
+        <TouchableOpacity onPress={() => router.push("../(aux)/termos")}>
+          <Text style={styles.linkText}>Leia os Termos de Privacidade</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => router.push("/cadastro")}>
           <Text style={styles.linkText}>Não tem conta? Cadastre-se</Text>
         </TouchableOpacity>
       </View>
@@ -98,6 +111,7 @@ const styles = StyleSheet.create({
     color: "#aaa",
     textAlign: "center",
     textDecorationLine: "underline",
+    marginVertical: 5,
   },
   image: {
     width: 200,
