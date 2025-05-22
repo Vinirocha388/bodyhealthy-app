@@ -21,7 +21,7 @@ export default function Layout() {
           drawerLabel: 'Início',
           title: 'Home',
           headerShown: false,
-          headerLeft: true,
+          headerLeft: false,
           drawerIcon: ({ size, color }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -45,6 +45,7 @@ export default function Layout() {
           drawerLabel: 'Cadastro',
           title: 'Cadastro',
           headerShown: false,
+          drawerItemStyle: { display: 'none' },
           headerLeft: true,
           drawerIcon: ({ size, color }) => (
             <Ionicons name="person" size={size} color={color} />
@@ -64,6 +65,35 @@ export default function Layout() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="login"
+        options={{
+          drawerLabel: 'login',
+          drawerItemStyle: { display: 'none' },
+          title: 'login',
+          headerShown: false,
+          headerShowoginn: false,
+          headerLeft: true,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="call-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="(aux)/termos"
+        options={{
+          drawerLabel: 'Termos',
+          drawerItemStyle: { display: 'none' },
+          title: 'Termos',
+          headerShown: false,
+          headerShowoginn: false,
+          headerLeft: true,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="call-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      
     </Drawer>
   );
 }

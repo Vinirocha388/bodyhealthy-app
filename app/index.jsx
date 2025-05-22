@@ -13,7 +13,7 @@ import CustomHeader from "../components/CustomHeader";
 import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const router = useRouter();
 
   return (
