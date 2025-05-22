@@ -58,7 +58,7 @@ const UserCard = ({ navigation }) => {
     try {
       // Fazer a requisição POST para a nova API
       const response = await axios.post(
-        "https://bodyhealthy-back.onrender.com/user",
+        "https://bodyhealthy-back.onrender.com/auth/register",
         userData
       );
       
