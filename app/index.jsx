@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   ScrollView,
   ImageBackground,
+
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import CustomHeader from "../components/CustomHeader";
 import { useRouter } from "expo-router";
+import { StatusBar } from "react-native-web";
 
 export default function HomeScreen() {
   // const navigation = useNavigation();
@@ -18,6 +20,11 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="#000"
+        translucent={false}
+        />
       <CustomHeader />
 
       <ScrollView contentContainerStyle={styles.scroll}>

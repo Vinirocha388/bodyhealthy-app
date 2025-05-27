@@ -85,7 +85,7 @@ const ContactScreen = () => {
       style={[styles.screenContainer, { backgroundColor }]}
     >
       <StatusBar barStyle="dark-content" />
-      
+
       {/* Header */}
       <CustomHeader />
 

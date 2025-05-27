@@ -15,7 +15,7 @@ export default function CustomHeader({ title = "Body & Health" }) {
       </TouchableOpacity>
 
       {/* Título */}
-      <Text style={styles.title} onPress={() => router.push("../")}>{title}</Text>
+      <Text style={styles.title} onPress={() => router.push("./")}>{title}</Text>
 
       {/* Ícone de usuário */}
       <Ionicons onPress={() => router.push("../login")} name="person-circle-outline" size={40} color="#fff"  />
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#000',
     padding: 20,
-    paddingTop: 10, // para não colar no topo
+    paddingTop: 30, // para não colar no topo
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -39,4 +39,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+
 });
+

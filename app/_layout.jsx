@@ -10,11 +10,26 @@ export default function Layout() {
           backgroundColor: '#000',
           opacity: 0.7,
           width: '80%',
+
         },
         drawerActiveBackgroundColor: '#f4f4f4',
         drawerActiveTintColor: '#fff',
         drawerInactiveTintColor: '#fff',
       }}>
+        <Drawer.Screen
+          name="login"
+          options={{
+            drawerLabel: 'login',
+            drawerItemStyle: { display: 'none' },
+            title: 'login',
+            headerShown: false,
+            headerShowoginn: false,
+            headerLeft: true,
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="call-outline" size={size} color={color} />
+            ),
+          }}
+        />
       <Drawer.Screen
         name="index"
         options={{
@@ -57,20 +72,6 @@ export default function Layout() {
         options={{
           drawerLabel: 'Contato',
           title: 'Contato',
-          headerShown: false,
-          headerShowoginn: false,
-          headerLeft: true,
-          drawerIcon: ({ size, color }) => (
-            <Ionicons name="call-outline" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="login"
-        options={{
-          drawerLabel: 'login',
-          drawerItemStyle: { display: 'none' },
-          title: 'login',
           headerShown: false,
           headerShowoginn: false,
           headerLeft: true,

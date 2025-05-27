@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import CustomHeader from '../components/CustomHeader';
+import { StatusBar } from 'react-native-web';
 
 export default function Posts() {
   const navigation = useNavigation();
@@ -139,6 +140,11 @@ export default function Posts() {
 
   return (
     <View style={styles.container}>
+            <StatusBar
+              barStyle="light-content"
+              backgroundColor="#000"
+              translucent={false}
+              />
       <CustomHeader />
       <View style={styles.pageTitle}>
         <Text style={styles.pageTitleText}>Feed da Comunidade</Text>
