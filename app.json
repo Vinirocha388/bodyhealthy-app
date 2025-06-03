@@ -1,31 +1,22 @@
 {
   "expo": {
-    "name": "bodyhealthy-app",
-    "slug": "bodyhealthy-app",
+    "name": "Body And Healthy",
+    "slug": "Body And Healthy",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#292929"
-    },
-    "ios": {
-      "supportsTablet": true
+      "image": "./assets/splash.png"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#292929"
+      "package": "com.seuapp.meuprojeto"
+    },
+    "ios": {
+      "bundleIdentifier": "com.seuapp.meuprojeto"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7150ae08-182f-4999-8012-fc7cdbcaf094"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-router"
-    ]
+    }
   }
 }
