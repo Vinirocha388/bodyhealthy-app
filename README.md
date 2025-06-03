@@ -1,4 +1,4 @@
-# 📝 Body & Healthy - Mobile
+# 📱 Body & Healthy - Mobile
 
 
 Bem-vindo ao **Body & Healthy**, uma solução completa para criar e gerenciar blogs com interfaces web (Next.js) e mobile (React Native). Este projeto foi desenvolvido para oferecer uma experiência robusta, segura e otimizada, permitindo que administradores e editores gerenciem postagens, categorias e usuários com facilidade. 🚀
