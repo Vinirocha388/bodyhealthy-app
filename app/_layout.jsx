@@ -68,6 +68,19 @@ export default function Layout() {
         }}
       />
       <Drawer.Screen
+        name="workouts"
+        options={{
+          drawerLabel: 'Treinos',
+          title: 'Treinos',
+          headerShown: false,
+          headerShowoginn: false,
+          headerLeft: true,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="barbell-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
         name="contact"
         options={{
           drawerLabel: 'Contato',
@@ -94,6 +107,8 @@ export default function Layout() {
           ),
         }}
       />
+      
+
       
     </Drawer>
   );
